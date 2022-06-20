@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Project, Editor, Dashboard, NotFound, Home } from "./screens";
+import * as Screens from "./screens";
 import * as Components from "./components";
 
 function App() {
@@ -9,11 +9,18 @@ function App() {
       <Components.Content>
         <Components.Breadcrumbs />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="projects" element={<Dashboard />} />
-          <Route path="projects/:projectId" element={<Project />} />
-          <Route path="editor" element={<Editor />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Screens.Home />} />
+          <Route path="projects" element={<Screens.Projects />} />
+          <Route
+            path="projects/:projectId"
+            element={<Screens.ProjectDetails />}
+          />
+          <Route
+            path="projects/:projectId/sprites/:spritesId"
+            element={<Screens.Editor />}
+          />
+          <Route path="editor" element={<Screens.Editor />} />
+          <Route path="*" element={<Screens.NotFound />} />
         </Routes>
       </Components.Content>
     </Components.AppContainer>

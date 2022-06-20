@@ -8,7 +8,11 @@ export default function useProjects() {
 
   function createProject() {
     setProjects([
-      { id: generateId(), name: `New project ${projects.length}`, sprites: [] },
+      {
+        id: generateId(),
+        name: `New project ${projects.length}`,
+        sprites: [],
+      },
       ...projects,
     ]);
   }

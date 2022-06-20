@@ -1,5 +1,6 @@
-export { Project } from "./project";
 export { Editor } from "./editor";
-export { Dashboard } from "./dashboard";
+export { Projects } from "./projects";
 export { NotFound } from "./not-found";
 export { Home } from "./home";
+export { Sprites } from "./sprites";
+export { ProjectDetails } from "./project-details";

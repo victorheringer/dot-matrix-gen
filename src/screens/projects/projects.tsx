@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "../../components";
 import { ProjectsContainer, ProjectsList, Title } from "./styled";
 
-export default function Dashboard() {
+export default function Projects() {
   const { projects, createProject, deleteProject } = useProjects();
   const navigate = useNavigate();
 

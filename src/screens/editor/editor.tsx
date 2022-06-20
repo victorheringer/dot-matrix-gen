@@ -1,7 +1,17 @@
+import { Button } from "../../components";
+import {
+  GridContainer,
+  TabContainer,
+  ButtonsContainer,
+  ProjectContainer,
+  EditorContainer,
+  Column,
+} from "./styled";
+import useAnimateGrid from "../../hooks/useAnimateGrid";
 import { useGenerator } from "../../hooks/useGenerator";
-import { Grid, Button } from "../../components";
+import { Grid, FormControl } from "../../components";
 
-function App() {
+export default function Editor() {
   const {
     matrix,
     width,
@@ -13,43 +23,55 @@ function App() {
   } = useGenerator();
 
   return (
-    <div className="app">
-      <div className="form-container">
-        <div className="form-control">
-          <label>Columns</label>
-          <input
-            type="number"
-            value={width}
-            name="width"
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div className="form-control">
-          <label>Rows</label>
-          <input
-            type="number"
-            value={height}
-            name="height"
-            onChange={handleChangeInput}
-          />
-        </div>
+    <ProjectContainer>
+      <TabContainer>
+        <Button variant="default" onClick={() => {}}>
+          Editor
+        </Button>
+        <Button variant="default" onClick={() => {}}>
+          Animation
+        </Button>
+      </TabContainer>
 
-        <div className="buttons">
-          <Button variant="danger" onClick={handleGenerateCleanMatrix}>
-            Clear
-          </Button>
-          <Button variant="default" onClick={handleCopyCode}>
-            Copy
-          </Button>
-          <Button variant="default" onClick={handleGenerateCleanMatrix}>
-            Generate
-          </Button>
-        </div>
-      </div>
+      <EditorContainer>
+        <Column>
+          <FormControl>
+            <label>Columns</label>
+            <input
+              type="number"
+              value={width}
+              name="width"
+              onChange={handleChangeInput}
+            />
+          </FormControl>
+          <FormControl>
+            <label>Rows</label>
+            <input
+              type="number"
+              value={height}
+              name="height"
+              onChange={handleChangeInput}
+            />
+          </FormControl>
 
-      <Grid pixelSize={30} matrix={matrix} clickCell={toggleMatrixCell} />
-    </div>
+          <ButtonsContainer>
+            <Button full variant="danger" onClick={handleGenerateCleanMatrix}>
+              Refresh
+            </Button>
+            <Button full variant="default" onClick={handleCopyCode}>
+              Copy as array
+            </Button>
+            <Button full variant="default" onClick={() => {}}>
+              Save
+            </Button>
+          </ButtonsContainer>
+        </Column>
+        <Column>
+          <GridContainer>
+            <Grid matrix={matrix} pixelSize={25} clickCell={toggleMatrixCell} />
+          </GridContainer>
+        </Column>
+      </EditorContainer>
+    </ProjectContainer>
   );
 }
-
-export default App;
