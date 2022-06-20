@@ -1,6 +1,6 @@
 import useAnimateGrid from "../../hooks/useAnimateGrid";
 import { Grid } from "../../components";
-import { HomeContainer, Title, Paragraph } from "./styled";
+import { HomeContainer, Title, Paragraph, StyledLink } from "./styled";
 import frame1 from "../../assets/frame1.json";
 import frame2 from "../../assets/frame2.json";
 
@@ -16,9 +16,9 @@ export default function Home() {
         sed aliquam nisl sapien ac est. Vivamus ultricies, ligula eu
         sollicitudin faucibus, enim dolor accumsan ligula, nec rhoncus tortor
         sem in enim. Fusce at volutpat justo. Cras rutrum ante nec magna aliquam
-        scelerisque. Quisque a erat a leo pulvinar vulputate et vel tellus. Sed
-        et ipsum purus.
+        scelerisque. Quisque a erat a leo pulvinar.
       </Paragraph>
+      <StyledLink to={`/projects`}>to projects →</StyledLink>
       <Grid matrix={grid} pixelSize={10} clickCell={() => {}} />
     </HomeContainer>
   );

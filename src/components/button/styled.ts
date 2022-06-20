@@ -18,6 +18,6 @@ export const Button = styled.button<{
   ${({ full }) => (full ? "width: 100%;" : "")}
 
   :hover {
-    opacity: 0.8;
+    opacity: 0.6;
   }
 `;

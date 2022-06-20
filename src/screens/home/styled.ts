@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HomeContainer = styled.div`
   padding: 0 30px;
@@ -12,4 +13,9 @@ export const Title = styled.h2`
 
 export const Paragraph = styled.p`
   line-height: 26px;
+`;
+
+export const StyledLink = styled(Link)`
+  margin-bottom: 20px;
+  display: block;
 `;

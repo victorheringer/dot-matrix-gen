@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler } from "react";
+import { ReactNode, MouseEventHandler, CSSProperties } from "react";
 import { CardWrapper } from "./styled";
 
 type CardProps = {
