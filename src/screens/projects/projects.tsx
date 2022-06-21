@@ -30,7 +30,7 @@ export default function Projects() {
           </CardGrid>
         </Card>
         {projects.map((project) => (
-          <Card>
+          <Card key={project.id}>
             <CardGrid>
               <CardTextColumn>
                 <ProjectName>{project.name}</ProjectName>

@@ -5,6 +5,7 @@ import {
   deleteProject,
   createSprite,
   deleteSprite,
+  getProject,
 } from "../helpers/storage-query";
 
 export default function useProjects() {
@@ -34,6 +35,7 @@ export default function useProjects() {
 
   return {
     projects,
+    getProject,
     handleCreateProject,
     handleDeleteProject,
     handleCreateSprite,
