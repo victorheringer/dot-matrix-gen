@@ -1,63 +1,42 @@
 import useLocalStorageState from "use-local-storage-state";
 import { generateId } from "../helpers/number";
+import {
+  createProject,
+  deleteProject,
+  createSprite,
+  deleteSprite,
+} from "../helpers/storage-query";
 
 export default function useProjects() {
   const [projects, setProjects] = useLocalStorageState("projects", {
     defaultValue: [{ id: generateId(), name: "New project", sprites: [] }],
   });
 
-  function createProject() {
-    setProjects([
-      {
-        id: generateId(),
-        name: `New project ${projects.length}`,
-        sprites: [],
-      },
-      ...projects,
-    ]);
+  function handleCreateProject() {
+    const updated = createProject(projects, `New project ${projects.length}`);
+    setProjects(updated);
   }
 
-  function deleteProject(project) {
-    setProjects(projects.filter((item) => item.id !== project.id));
+  function handleDeleteProject(projectId: number) {
+    const updated = deleteProject(projects, projectId);
+    setProjects(updated);
   }
 
-  function getProject(projectId: number) {
-    return projects.filter((item) => item.id === projectId);
+  function handleCreateSprite(projectId: number) {
+    const updated = createSprite(projects, projectId, "New sprite");
+    setProjects(updated);
   }
 
-  function createSprite(projectId: number) {
-    const project = getProject(projectId);
-    project.sprites.push({ id: generateId(), name: "New spite" });
-
-    const without = projects.filter((item) => item.id !== projectId);
-    setProjects([project, ...without]);
-  }
-
-  function deleteSprite(projectId: number, spriteId: number) {
-    const project = getProject(projectId);
-
-    const withoutSprite = project.sprites.filter(
-      (sprite) => sprite.id !== spriteId
-    );
-
-    project.sprites = withoutSprite;
-
-    const without = projects.filter((item) => item.id !== projectId);
-    setProjects([project, ...without]);
-  }
-
-  function getSprite(projectId: number, spriteId: number) {
-    const project = getProject(projectId);
-    return project.sprites.filter((item) => item.id === spriteId);
+  function handleDeleteSprite(projectId: number, spriteId: number) {
+    const updated = deleteSprite(projects, projectId, spriteId);
+    setProjects(updated);
   }
 
   return {
     projects,
-    createProject,
-    deleteProject,
-    getProject,
-    createSprite,
-    deleteSprite,
-    getSprite,
+    handleCreateProject,
+    handleDeleteProject,
+    handleCreateSprite,
+    handleDeleteSprite,
   };
 }

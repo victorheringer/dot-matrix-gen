@@ -13,7 +13,7 @@ import {
 } from "./styled";
 
 export default function Projects() {
-  const { projects, createProject, deleteProject } = useProjects();
+  const { projects, handleCreateProject, handleDeleteProject } = useProjects();
 
   return (
     <ProjectsContainer>
@@ -24,7 +24,7 @@ export default function Projects() {
             <CardTextColumn>
               <CreateProjectLabel>Create Project</CreateProjectLabel>
             </CardTextColumn>
-            <Button variant="default" onClick={createProject}>
+            <Button variant="default" onClick={handleCreateProject}>
               New
             </Button>
           </CardGrid>
@@ -38,7 +38,10 @@ export default function Projects() {
                   to project →
                 </StyledLink>
               </CardTextColumn>
-              <Button variant="danger" onClick={() => deleteProject(project)}>
+              <Button
+                variant="danger"
+                onClick={() => handleDeleteProject(project.id)}
+              >
                 Delete
               </Button>
             </CardGrid>
