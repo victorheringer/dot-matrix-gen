@@ -6,7 +6,7 @@ import "./styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/dot-matrix-gen">
       <App />
     </BrowserRouter>
   </React.StrictMode>
