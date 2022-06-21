@@ -7,6 +7,9 @@ export default function Sidebar() {
       <Logo>Dot Matrix Gen</Logo>
       <List>
         <ListItem>
+          <Link to="/">Home</Link>
+        </ListItem>
+        <ListItem>
           <Link to="projects">Projects</Link>
         </ListItem>
         <ListItem>
