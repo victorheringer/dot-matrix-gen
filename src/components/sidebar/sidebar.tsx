@@ -13,6 +13,9 @@ export default function Sidebar() {
           <Link to="projects">Projects</Link>
         </ListItem>
         <ListItem>
+          <Link to="settings">Settings</Link>
+        </ListItem>
+        <ListItem>
           <a
             target="_blank"
             href="https://github.com/victorheringer/dot-matrix-gen"

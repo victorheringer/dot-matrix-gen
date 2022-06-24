@@ -16,10 +16,11 @@ function App() {
             element={<Screens.ProjectDetails />}
           />
           <Route
-            path="projects/:projectId/sprites/:spritesId"
+            path="projects/:projectId/sprites/:spriteId"
             element={<Screens.Editor />}
           />
           <Route path="editor" element={<Screens.Editor />} />
+          <Route path="settings" element={<Screens.Settings />} />
           <Route path="*" element={<Screens.NotFound />} />
         </Routes>
       </Components.Content>
