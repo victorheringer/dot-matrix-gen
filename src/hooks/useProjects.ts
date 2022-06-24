@@ -2,10 +2,12 @@ import useLocalStorageState from "use-local-storage-state";
 import { generateId } from "../helpers/number";
 import {
   createProject,
-  deleteProject,
+  removeById,
   createSprite,
   deleteSprite,
-  getProject,
+  getById,
+  createFrame,
+  getSprite,
 } from "../helpers/storage-query";
 
 export default function useProjects() {
@@ -19,7 +21,7 @@ export default function useProjects() {
   }
 
   function handleDeleteProject(projectId: number) {
-    const updated = deleteProject(projects, projectId);
+    const updated = removeById(projects, projectId);
     setProjects(updated);
   }
 
@@ -33,12 +35,19 @@ export default function useProjects() {
     setProjects(updated);
   }
 
+  function handleCreateFrame(projectId: number, spriteId: number) {
+    const updated = createFrame(projects, projectId, spriteId);
+    setProjects(updated);
+  }
+
   return {
     projects,
-    getProject,
+    getSprite,
+    getById,
     handleCreateProject,
     handleDeleteProject,
     handleCreateSprite,
     handleDeleteSprite,
+    handleCreateFrame,
   };
 }

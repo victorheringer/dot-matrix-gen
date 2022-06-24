@@ -1,40 +1,42 @@
 import useProjects from "../../hooks/useProjects";
 import { useParams } from "react-router-dom";
-import { Button, Card } from "../../components";
-import { Link } from "react-router-dom";
+import {
+  Button,
+  Card,
+  CrudList,
+  CrusListItemTitle,
+  CrudListItemLink,
+  CrudListItemColumn,
+  CrudListItemGrid,
+} from "../../components";
 
 export default function ProjectsDetails() {
   const { projectId } = useParams();
-  const { projects, getProject, handleCreateSprite, handleDeleteSprite } =
+  const { projects, getById, handleCreateSprite, handleDeleteSprite } =
     useProjects();
 
-  console.log(getProject(projects, projectId));
-
-  console.log(projectId);
+  const sprites = getById(projects, parseInt(projectId || ""))?.sprites;
 
   return (
     <>
-      <div>
-        <Button
-          variant="default"
-          onClick={() => handleCreateSprite(parseInt(projectId || ""))}
-        >
-          add
-        </Button>
-      </div>
-      <div>
-        {getProject(projects, parseInt(projectId || ""))?.sprites.map(
-          (sprite) => (
-            <Card>
-              <div>
-                {sprite.name}
-                <Link
-                  replace
+      <CrudList
+        onCreateClick={() => handleCreateSprite(parseInt(projectId || ""))}
+        createBtnText="Create sprite"
+        title="Sprites"
+        total={sprites.length}
+      >
+        {sprites.map((sprite) => (
+          <Card key={sprite.id}>
+            <CrudListItemGrid>
+              <CrudListItemColumn>
+                <CrusListItemTitle>{sprite.name}</CrusListItemTitle>
+
+                <CrudListItemLink
                   to={`/projects/${projectId}/sprites/${sprite.id}`}
                 >
-                  go to sprite
-                </Link>
-              </div>
+                  to sprite →
+                </CrudListItemLink>
+              </CrudListItemColumn>
 
               <Button
                 variant="danger"
@@ -44,10 +46,10 @@ export default function ProjectsDetails() {
               >
                 delete
               </Button>
-            </Card>
-          )
-        )}
-      </div>
+            </CrudListItemGrid>
+          </Card>
+        ))}
+      </CrudList>
     </>
   );
 }

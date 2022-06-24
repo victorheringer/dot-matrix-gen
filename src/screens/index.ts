@@ -4,3 +4,4 @@ export { NotFound } from "./not-found";
 export { Home } from "./home";
 export { Sprites } from "./sprites";
 export { ProjectDetails } from "./project-details";
+export { Settings } from "./settings";

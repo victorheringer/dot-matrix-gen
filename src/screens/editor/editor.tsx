@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Button } from "../../components";
+import { useParams } from "react-router-dom";
 import {
   GridContainer,
   TabContainer,
@@ -6,7 +8,10 @@ import {
   ProjectContainer,
   EditorContainer,
   Column,
+  Frame,
+  FrameContainer,
 } from "./styled";
+import useProjects from "../../hooks/useProjects";
 import useAnimateGrid from "../../hooks/useAnimateGrid";
 import { useGenerator } from "../../hooks/useGenerator";
 import { Grid, FormControl } from "../../components";
@@ -21,6 +26,11 @@ export default function Editor() {
     handleGenerateCleanMatrix,
     toggleMatrixCell,
   } = useGenerator();
+  const [selectedFrame, setSelectedFrame] = useState(0);
+
+  const { projects, handleCreateFrame, getSprite } = useProjects();
+
+  const { projectId, spriteId } = useParams();
 
   return (
     <ProjectContainer>
@@ -32,6 +42,34 @@ export default function Editor() {
           Animation
         </Button>
       </TabContainer>
+
+      <FrameContainer>
+        <>
+          <Frame
+            onClick={() =>
+              handleCreateFrame(
+                parseInt(projectId || ""),
+                parseInt(spriteId || "")
+              )
+            }
+          >
+            New
+          </Frame>
+          {getSprite(
+            projects,
+            parseInt(projectId || ""),
+            parseInt(spriteId || "")
+          )?.frames.map((frame, index) => (
+            <Frame
+              selected={selectedFrame === frame.id}
+              key={frame.id}
+              onClick={() => setSelectedFrame(frame.id)}
+            >
+              frame {index + 1}
+            </Frame>
+          ))}
+        </>
+      </FrameContainer>
 
       <EditorContainer>
         <Column>
@@ -55,6 +93,9 @@ export default function Editor() {
           </FormControl>
 
           <ButtonsContainer>
+            <Button full variant="danger" onClick={() => alert("delete")}>
+              Delete
+            </Button>
             <Button full variant="danger" onClick={handleGenerateCleanMatrix}>
               Refresh
             </Button>

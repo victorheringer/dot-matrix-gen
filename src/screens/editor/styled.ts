@@ -29,3 +29,16 @@ export const ButtonsContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
+
+export const FrameContainer = styled.div`
+  border: 1px solid red;
+  margin-top: 20px;
+  display: flex;
+`;
+
+export const Frame = styled.div<{ selected?: boolean }>`
+  border: 1px solid #212121;
+  width: 60px;
+  height: 60px;
+  ${({ selected }) => selected && "background-color: #ccc;"}
+`;

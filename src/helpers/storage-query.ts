@@ -1,16 +1,16 @@
 import { generateId } from "./number";
 
+export function getById(collection: any[], id: number) {
+  const [result] = collection.filter((item) => item.id === id);
+  return result;
+}
+
+export function removeById(collection: any[], id: number) {
+  return collection.filter((item) => item.id !== id);
+}
+
 export function createProject(projects: Project[], name: string) {
   return [{ id: generateId(), name, sprites: [] }, ...projects];
-}
-
-export function deleteProject(projects: Project[], projectId: number) {
-  return projects.filter((item) => item.id !== projectId);
-}
-
-export function getProject(projects: Project[], projectId: number) {
-  const [result] = projects.filter((item) => item.id === projectId);
-  return result;
 }
 
 export function createSprite(
@@ -18,7 +18,7 @@ export function createSprite(
   projectId: number,
   name: string
 ) {
-  const project = getProject(projects, projectId);
+  const project = getById(projects, projectId);
   const without = projects.filter((item) => item.id !== projectId);
 
   project.sprites.push({ id: generateId(), name, frames: [] });
@@ -31,8 +31,8 @@ export function deleteSprite(
   projectId: number,
   spriteId: number
 ) {
-  const project = getProject(projects, projectId);
-  const without = projects.filter((item) => item.id !== projectId);
+  const project = getById(projects, projectId);
+  const without = removeById(projects, projectId);
 
   const withoutSprite = project.sprites.filter(
     (sprite) => sprite.id !== spriteId
@@ -48,8 +48,37 @@ export function getSprite(
   projectId: number,
   spriteId: number
 ) {
-  const project = getProject(projects, projectId);
+  const project = getById(projects, projectId);
   const [result] = project.sprites.filter((item) => item.id === spriteId);
 
+  console.log(result);
+
   return result;
+}
+
+export function createFrame(
+  projects: Project[],
+  projectId: number,
+  spriteId: number
+) {
+  console.log(projects, projectId, spriteId);
+
+  return projects.map((project) => {
+    if (project.id === projectId) {
+      console.log("project equal id");
+      project.sprites = project.sprites.map((sprite) => {
+        if (sprite.id === spriteId) {
+          console.log("sprite equal id");
+          sprite.frames.push({ id: generateId() });
+          return sprite;
+        }
+
+        return sprite;
+      });
+
+      return project;
+    }
+
+    return project;
+  });
 }
