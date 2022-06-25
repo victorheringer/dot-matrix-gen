@@ -8,6 +8,7 @@ import {
   getById,
   createFrame,
   getSprite,
+  handleUpdateFrame,
 } from "../helpers/storage-query";
 
 export default function useProjects() {
@@ -49,5 +50,6 @@ export default function useProjects() {
     handleCreateSprite,
     handleDeleteSprite,
     handleCreateFrame,
+    handleUpdateFrame,
   };
 }

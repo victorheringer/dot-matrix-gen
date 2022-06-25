@@ -51,8 +51,6 @@ export function getSprite(
   const project = getById(projects, projectId);
   const [result] = project.sprites.filter((item) => item.id === spriteId);
 
-  console.log(result);
-
   return result;
 }
 
@@ -61,16 +59,43 @@ export function createFrame(
   projectId: number,
   spriteId: number
 ) {
-  console.log(projects, projectId, spriteId);
-
   return projects.map((project) => {
     if (project.id === projectId) {
-      console.log("project equal id");
       project.sprites = project.sprites.map((sprite) => {
         if (sprite.id === spriteId) {
-          console.log("sprite equal id");
-          sprite.frames.push({ id: generateId() });
+          sprite.frames.push({ id: generateId(), data: [[]] });
           return sprite;
+        }
+
+        return sprite;
+      });
+
+      return project;
+    }
+
+    return project;
+  });
+}
+
+export function handleUpdateFrame(
+  projects: Project[],
+  projectId: number,
+  spriteId: number,
+  frameId: number,
+  data: boolean[][]
+) {
+  return projects.map((project) => {
+    if (project.id === projectId) {
+      project.sprites = project.sprites.map((sprite) => {
+        if (sprite.id === spriteId) {
+          sprite.frames = sprite.frames.map((frame) => {
+            if (frame.id === frameId) {
+              frame.data = data;
+              return frame;
+            }
+
+            return frame;
+          });
         }
 
         return sprite;

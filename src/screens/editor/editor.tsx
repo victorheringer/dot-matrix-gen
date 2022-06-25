@@ -10,6 +10,7 @@ import {
   Column,
   Frame,
   FrameContainer,
+  AddButton,
 } from "./styled";
 import useProjects from "../../hooks/useProjects";
 import useAnimateGrid from "../../hooks/useAnimateGrid";
@@ -28,9 +29,12 @@ export default function Editor() {
   } = useGenerator();
   const [selectedFrame, setSelectedFrame] = useState(0);
 
-  const { projects, handleCreateFrame, getSprite } = useProjects();
+  const { projects, handleCreateFrame, getSprite, handleUpdateFrame } =
+    useProjects();
 
   const { projectId, spriteId } = useParams();
+
+  console.log(projects);
 
   return (
     <ProjectContainer>
@@ -44,31 +48,30 @@ export default function Editor() {
       </TabContainer>
 
       <FrameContainer>
-        <>
+        <AddButton
+          onClick={() =>
+            handleCreateFrame(
+              parseInt(projectId || ""),
+              parseInt(spriteId || "")
+            )
+          }
+        >
+          +
+        </AddButton>
+
+        {getSprite(
+          projects,
+          parseInt(projectId || ""),
+          parseInt(spriteId || "")
+        )?.frames.map((frame, index) => (
           <Frame
-            onClick={() =>
-              handleCreateFrame(
-                parseInt(projectId || ""),
-                parseInt(spriteId || "")
-              )
-            }
+            selected={selectedFrame === frame.id}
+            key={frame.id}
+            onClick={() => setSelectedFrame(frame.id)}
           >
-            New
+            {index + 1}
           </Frame>
-          {getSprite(
-            projects,
-            parseInt(projectId || ""),
-            parseInt(spriteId || "")
-          )?.frames.map((frame, index) => (
-            <Frame
-              selected={selectedFrame === frame.id}
-              key={frame.id}
-              onClick={() => setSelectedFrame(frame.id)}
-            >
-              frame {index + 1}
-            </Frame>
-          ))}
-        </>
+        ))}
       </FrameContainer>
 
       <EditorContainer>
@@ -102,7 +105,21 @@ export default function Editor() {
             <Button full variant="default" onClick={handleCopyCode}>
               Copy as array
             </Button>
-            <Button full variant="default" onClick={() => {}}>
+            <Button
+              full
+              variant="default"
+              onClick={() => {
+                handleUpdateFrame(
+                  projects,
+                  parseInt(projectId || ""),
+                  parseInt(spriteId || ""),
+                  selectedFrame,
+                  matrix
+                );
+
+                console.log("saved!");
+              }}
+            >
               Save
             </Button>
           </ButtonsContainer>
