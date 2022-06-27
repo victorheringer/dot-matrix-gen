@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../components";
 import { useParams } from "react-router-dom";
 import {
   GridContainer,
   TabContainer,
-  ButtonsContainer,
   ProjectContainer,
   EditorContainer,
-  Column,
   Frame,
   FrameContainer,
   AddButton,
+  ButtonSeparator,
 } from "./styled";
 import useProjects from "../../hooks/useProjects";
 import useAnimateGrid from "../../hooks/useAnimateGrid";
 import { useGenerator } from "../../hooks/useGenerator";
-import { Grid, FormControl } from "../../components";
+import { Grid } from "../../components";
 
 export default function Editor() {
   const {
@@ -27,23 +26,73 @@ export default function Editor() {
     handleGenerateCleanMatrix,
     toggleMatrixCell,
   } = useGenerator();
-  const [selectedFrame, setSelectedFrame] = useState(0);
-
-  const { projects, handleCreateFrame, getSprite, handleUpdateFrame } =
-    useProjects();
 
   const { projectId, spriteId } = useParams();
+  const { projects, handleCreateFrame, handleUpdateFrame } = useProjects();
+  const sprite =
+    projects[parseInt(projectId || "")].sprites[parseInt(spriteId || "")];
 
-  console.log(projects);
+  const [selectedFrame, setSelectedFrame] = useState(0);
+  const [mode, setMode] = useState<"edit" | "animate">("edit");
+  const { grid, pause, play } = useAnimateGrid({
+    grids: Object.values(sprite?.frames || {}).map((frame: any) => frame.data),
+    time: 1000,
+  });
+
+  useEffect(() => {
+    pause();
+  }, []);
 
   return (
     <ProjectContainer>
       <TabContainer>
-        <Button variant="default" onClick={() => {}}>
+        <Button
+          variant={mode == "edit" ? "secondary" : "default"}
+          onClick={() => {
+            setMode("edit");
+          }}
+        >
           Editor
         </Button>
-        <Button variant="default" onClick={() => {}}>
+        <Button
+          variant={mode == "animate" ? "secondary" : "default"}
+          onClick={() => {
+            setMode("animate");
+          }}
+        >
           Animation
+        </Button>
+        <ButtonSeparator>|</ButtonSeparator>
+
+        <Button variant="default" onClick={handleCopyCode}>
+          Copy as array
+        </Button>
+
+        <Button variant="default" onClick={play}>
+          Play
+        </Button>
+        <Button variant="default" onClick={pause}>
+          Pause
+        </Button>
+
+        <Button
+          variant="default"
+          onClick={() => {
+            handleUpdateFrame(
+              projects,
+              parseInt(projectId || ""),
+              parseInt(spriteId || ""),
+              selectedFrame,
+              matrix
+            );
+
+            alert("Saved");
+          }}
+        >
+          Save
+        </Button>
+        <Button variant="danger" onClick={() => alert("delete")}>
+          Delete
         </Button>
       </TabContainer>
 
@@ -59,15 +108,11 @@ export default function Editor() {
           +
         </AddButton>
 
-        {getSprite(
-          projects,
-          parseInt(projectId || ""),
-          parseInt(spriteId || "")
-        )?.frames.map((frame, index) => (
+        {Object.keys(sprite?.frames || {}).map((id, index) => (
           <Frame
-            selected={selectedFrame === frame.id}
-            key={frame.id}
-            onClick={() => setSelectedFrame(frame.id)}
+            selected={selectedFrame === id}
+            key={id}
+            onClick={() => setSelectedFrame(id)}
           >
             {index + 1}
           </Frame>
@@ -75,60 +120,14 @@ export default function Editor() {
       </FrameContainer>
 
       <EditorContainer>
-        <Column>
-          <FormControl>
-            <label>Columns</label>
-            <input
-              type="number"
-              value={width}
-              name="width"
-              onChange={handleChangeInput}
-            />
-          </FormControl>
-          <FormControl>
-            <label>Rows</label>
-            <input
-              type="number"
-              value={height}
-              name="height"
-              onChange={handleChangeInput}
-            />
-          </FormControl>
-
-          <ButtonsContainer>
-            <Button full variant="danger" onClick={() => alert("delete")}>
-              Delete
-            </Button>
-            <Button full variant="danger" onClick={handleGenerateCleanMatrix}>
-              Refresh
-            </Button>
-            <Button full variant="default" onClick={handleCopyCode}>
-              Copy as array
-            </Button>
-            <Button
-              full
-              variant="default"
-              onClick={() => {
-                handleUpdateFrame(
-                  projects,
-                  parseInt(projectId || ""),
-                  parseInt(spriteId || ""),
-                  selectedFrame,
-                  matrix
-                );
-
-                console.log("saved!");
-              }}
-            >
-              Save
-            </Button>
-          </ButtonsContainer>
-        </Column>
-        <Column>
-          <GridContainer>
+        <GridContainer>
+          {mode === "edit" && (
             <Grid matrix={matrix} pixelSize={25} clickCell={toggleMatrixCell} />
-          </GridContainer>
-        </Column>
+          )}
+          {mode === "animate" && (
+            <Grid matrix={grid} pixelSize={25} clickCell={() => {}} />
+          )}
+        </GridContainer>
       </EditorContainer>
     </ProjectContainer>
   );

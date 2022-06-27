@@ -11,16 +11,17 @@ export default function Grid({ matrix, clickCell, pixelSize }: GridProps) {
     <TableContainer>
       <table>
         <tbody>
-          {matrix.map((lines, lineIndex) => (
+          {matrix?.map((lines, lineIndex) => (
             <tr key={lineIndex}>
-              {lines.map((column, columnIndex) => (
-                <TableColumn
-                  key={columnIndex}
-                  onClick={() => clickCell(lineIndex, columnIndex, column)}
-                  isPainted={column}
-                  size={pixelSize}
-                ></TableColumn>
-              ))}
+              {lines &&
+                lines?.map((column, columnIndex) => (
+                  <TableColumn
+                    key={columnIndex}
+                    onClick={() => clickCell(lineIndex, columnIndex, column)}
+                    isPainted={column}
+                    size={pixelSize}
+                  ></TableColumn>
+                ))}
             </tr>
           ))}
         </tbody>

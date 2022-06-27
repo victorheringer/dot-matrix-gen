@@ -20,18 +20,18 @@ export default function Projects() {
         title="Projects"
         total={projects.length}
       >
-        {projects.map((project) => (
-          <Card key={project.id}>
+        {Object.keys(projects).map((id) => (
+          <Card key={id}>
             <CrudListItemGrid>
               <CrudListItemColumn>
-                <CrusListItemTitle>{project.name}</CrusListItemTitle>
-                <CrudListItemLink to={`/projects/${project.id}`}>
+                <CrusListItemTitle>{projects[id].name}</CrusListItemTitle>
+                <CrudListItemLink to={`/projects/${id}`}>
                   to project →
                 </CrudListItemLink>
               </CrudListItemColumn>
               <Button
                 variant="danger"
-                onClick={() => handleDeleteProject(project.id)}
+                onClick={() => handleDeleteProject(parseInt(id))}
               >
                 Delete
               </Button>

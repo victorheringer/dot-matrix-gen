@@ -1,109 +1,77 @@
 import { generateId } from "./number";
+import produce from "immer";
 
-export function getById(collection: any[], id: number) {
-  const [result] = collection.filter((item) => item.id === id);
-  return result;
+export function createProject(projects: any) {
+  const id = generateId();
+  const result = produce(projects, (draft: any) => {
+    draft[id] = {
+      name: "New project",
+      sprites: {},
+    };
+  });
+
+  return createSprite(result, id);
 }
 
-export function removeById(collection: any[], id: number) {
-  return collection.filter((item) => item.id !== id);
-}
+export function createSprite(projects: any, projectId: number) {
+  const id = generateId();
+  const result = produce(projects, (draft: any) => {
+    draft[projectId].sprites[id] = {
+      name: "New Sprite",
+      frames: {},
+    };
+  });
 
-export function createProject(projects: Project[], name: string) {
-  return [{ id: generateId(), name, sprites: [] }, ...projects];
-}
-
-export function createSprite(
-  projects: Project[],
-  projectId: number,
-  name: string
-) {
-  const project = getById(projects, projectId);
-  const without = projects.filter((item) => item.id !== projectId);
-
-  project.sprites.push({ id: generateId(), name, frames: [] });
-
-  return [project, ...without];
-}
-
-export function deleteSprite(
-  projects: Project[],
-  projectId: number,
-  spriteId: number
-) {
-  const project = getById(projects, projectId);
-  const without = removeById(projects, projectId);
-
-  const withoutSprite = project.sprites.filter(
-    (sprite) => sprite.id !== spriteId
-  );
-
-  project.sprites = withoutSprite;
-
-  return [project, ...without];
-}
-
-export function getSprite(
-  projects: Project[],
-  projectId: number,
-  spriteId: number
-) {
-  const project = getById(projects, projectId);
-  const [result] = project.sprites.filter((item) => item.id === spriteId);
-
-  return result;
+  return createFrame(result, projectId, id);
 }
 
 export function createFrame(
-  projects: Project[],
+  projects: any,
   projectId: number,
   spriteId: number
 ) {
-  return projects.map((project) => {
-    if (project.id === projectId) {
-      project.sprites = project.sprites.map((sprite) => {
-        if (sprite.id === spriteId) {
-          sprite.frames.push({ id: generateId(), data: [[]] });
-          return sprite;
-        }
-
-        return sprite;
-      });
-
-      return project;
-    }
-
-    return project;
+  return produce(projects, (draft: any) => {
+    draft[projectId].sprites[spriteId].frames[generateId()] = {
+      data: [[]],
+    };
   });
 }
 
-export function handleUpdateFrame(
-  projects: Project[],
+export function deleteProject(projects: any, projectId: number) {
+  return produce(projects, (draft: any) => {
+    delete draft[projectId];
+  });
+}
+
+export function deleteSprite(
+  projects: any,
+  projectId: number,
+  spriteId: number
+) {
+  return produce(projects, (draft: any) => {
+    delete draft[projectId].sprites[spriteId];
+  });
+}
+
+export function deleteFrame(
+  projects: any,
+  projectId: number,
+  spriteId: number,
+  frameId: number
+) {
+  return produce(projects, (draft: any) => {
+    delete draft[projectId].sprites[spriteId].frames[frameId];
+  });
+}
+
+export function updateFrame(
+  projects: any,
   projectId: number,
   spriteId: number,
   frameId: number,
   data: boolean[][]
 ) {
-  return projects.map((project) => {
-    if (project.id === projectId) {
-      project.sprites = project.sprites.map((sprite) => {
-        if (sprite.id === spriteId) {
-          sprite.frames = sprite.frames.map((frame) => {
-            if (frame.id === frameId) {
-              frame.data = data;
-              return frame;
-            }
-
-            return frame;
-          });
-        }
-
-        return sprite;
-      });
-
-      return project;
-    }
-
-    return project;
+  return produce(projects, (draft: any) => {
+    draft[projectId].sprites[spriteId].frames[frameId].data = data;
   });
 }

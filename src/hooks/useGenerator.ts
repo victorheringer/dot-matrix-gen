@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { copyTextToClipboard } from "../helpers/copy";
 import { createMatrix } from "../helpers/array";
+import produce from "immer";
 
 const INIT_HEIGHT = 16;
 const INIT_WIDTH = 19;
@@ -20,8 +21,10 @@ export function useGenerator() {
   }
 
   function toggleMatrixCell(line: number, column: number, value: boolean) {
-    const copy = [...matrix];
-    copy[line][column] = !value;
+    const copy = produce(matrix, (draft: any) => {
+      draft[line][column] = !value;
+    });
+
     setMatrix(copy);
   }
 

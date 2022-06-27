@@ -12,10 +12,9 @@ import {
 
 export default function ProjectsDetails() {
   const { projectId } = useParams();
-  const { projects, getById, handleCreateSprite, handleDeleteSprite } =
-    useProjects();
+  const { projects, handleCreateSprite, handleDeleteSprite } = useProjects();
 
-  const sprites = getById(projects, parseInt(projectId || ""))?.sprites;
+  const sprites = projects[projectId].sprites;
 
   return (
     <>
@@ -25,15 +24,12 @@ export default function ProjectsDetails() {
         title="Sprites"
         total={sprites.length}
       >
-        {sprites.map((sprite) => (
-          <Card key={sprite.id}>
+        {Object.keys(sprites).map((id) => (
+          <Card key={id}>
             <CrudListItemGrid>
               <CrudListItemColumn>
-                <CrusListItemTitle>{sprite.name}</CrusListItemTitle>
-
-                <CrudListItemLink
-                  to={`/projects/${projectId}/sprites/${sprite.id}`}
-                >
+                <CrusListItemTitle>{sprites[id].name}</CrusListItemTitle>
+                <CrudListItemLink to={`/projects/${projectId}/sprites/${id}`}>
                   to sprite →
                 </CrudListItemLink>
               </CrudListItemColumn>
@@ -41,7 +37,7 @@ export default function ProjectsDetails() {
               <Button
                 variant="danger"
                 onClick={() =>
-                  handleDeleteSprite(parseInt(projectId || ""), sprite.id)
+                  handleDeleteSprite(parseInt(projectId || ""), parseInt(id))
                 }
               >
                 delete
