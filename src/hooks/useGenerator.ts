@@ -36,6 +36,7 @@ export function useGenerator() {
   return {
     ...size,
     matrix,
+    setMatrix,
     handleChangeInput,
     handleGenerateCleanMatrix,
     handleCopyCode,

@@ -15,24 +15,16 @@ import useProjects from "../../hooks/useProjects";
 import useAnimateGrid from "../../hooks/useAnimateGrid";
 import { useGenerator } from "../../hooks/useGenerator";
 import { Grid } from "../../components";
+import { useEditor } from "./useEditor";
 
 export default function Editor() {
-  const {
-    matrix,
-    width,
-    height,
-    handleChangeInput,
-    handleCopyCode,
-    handleGenerateCleanMatrix,
-    toggleMatrixCell,
-  } = useGenerator();
+  const { matrix, handleCopyCode, toggleMatrixCell, setMatrix } =
+    useGenerator();
 
   const { projectId, spriteId } = useParams();
   const { projects, handleCreateFrame, handleUpdateFrame } = useProjects();
-  const sprite =
-    projects[parseInt(projectId || "")].sprites[parseInt(spriteId || "")];
+  const { sprite, selectedFrame, setSelectedFrame } = useEditor(projects);
 
-  const [selectedFrame, setSelectedFrame] = useState(0);
   const [mode, setMode] = useState<"edit" | "animate">("edit");
   const { grid, pause, play } = useAnimateGrid({
     grids: Object.values(sprite?.frames || {}).map((frame: any) => frame.data),
@@ -42,6 +34,10 @@ export default function Editor() {
   useEffect(() => {
     pause();
   }, []);
+
+  useEffect(() => {
+    setMatrix(sprite.frames[selectedFrame].data);
+  }, [selectedFrame]);
 
   return (
     <ProjectContainer>

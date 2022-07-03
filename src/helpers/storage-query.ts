@@ -1,5 +1,9 @@
 import { generateId } from "./number";
 import produce from "immer";
+import { createMatrix } from "../helpers/array";
+
+const INIT_HEIGHT = 16;
+const INIT_WIDTH = 19;
 
 export function createProject(projects: any) {
   const id = generateId();
@@ -32,7 +36,7 @@ export function createFrame(
 ) {
   return produce(projects, (draft: any) => {
     draft[projectId].sprites[spriteId].frames[generateId()] = {
-      data: [[]],
+      data: createMatrix(INIT_HEIGHT, INIT_WIDTH, false),
     };
   });
 }
