@@ -59,37 +59,42 @@ export default function Editor() {
           Animation
         </Button>
         <ButtonSeparator>|</ButtonSeparator>
+        {mode == "edit" ? (
+          <>
+            <Button variant="default" onClick={handleCopyCode}>
+              Copy as array
+            </Button>
 
-        <Button variant="default" onClick={handleCopyCode}>
-          Copy as array
-        </Button>
+            <Button
+              variant="default"
+              onClick={() => {
+                handleUpdateFrame(
+                  projects,
+                  parseInt(projectId || ""),
+                  parseInt(spriteId || ""),
+                  selectedFrame,
+                  matrix
+                );
 
-        <Button variant="default" onClick={play}>
-          Play
-        </Button>
-        <Button variant="default" onClick={pause}>
-          Pause
-        </Button>
-
-        <Button
-          variant="default"
-          onClick={() => {
-            handleUpdateFrame(
-              projects,
-              parseInt(projectId || ""),
-              parseInt(spriteId || ""),
-              selectedFrame,
-              matrix
-            );
-
-            alert("Saved");
-          }}
-        >
-          Save
-        </Button>
-        <Button variant="danger" onClick={() => alert("delete")}>
-          Delete
-        </Button>
+                alert("Saved");
+              }}
+            >
+              Save
+            </Button>
+            <Button variant="danger" onClick={() => alert("delete")}>
+              Delete
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button variant="default" onClick={play}>
+              Play
+            </Button>
+            <Button variant="default" onClick={pause}>
+              Pause
+            </Button>
+          </>
+        )}
       </TabContainer>
 
       <FrameContainer>

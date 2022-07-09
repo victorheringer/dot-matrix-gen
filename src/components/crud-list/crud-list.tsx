@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import { Card, Button } from "..";
+import { Card, Button, ScreenTitle } from "..";
 import {
-  ListTitle,
   ListContainer,
   ListContent,
   CardGrid,
@@ -27,7 +26,7 @@ export default function CrudList({
 }: CrudListProps) {
   return (
     <ListContainer>
-      <ListTitle>{title}</ListTitle>
+      <ScreenTitle>{title}</ScreenTitle>
 
       <ListContent>
         <Card>

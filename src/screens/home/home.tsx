@@ -1,6 +1,7 @@
 import useAnimateGrid from "../../hooks/useAnimateGrid";
 import { Grid } from "../../components";
-import { HomeContainer, Title, Paragraph, StyledLink } from "./styled";
+import { Paragraph, StyledLink } from "./styled";
+import { ScreenContainer, ScreenTitle } from "../../components";
 import frame1 from "../../assets/frame1.json";
 import frame2 from "../../assets/frame2.json";
 
@@ -8,18 +9,16 @@ export default function Home() {
   const { grid } = useAnimateGrid({ grids: [frame1, frame2], time: 1000 });
 
   return (
-    <HomeContainer>
-      <Title>Welcome to Dot Matrix Gen</Title>
+    <ScreenContainer>
+      <ScreenTitle>Welcome to Dot Matrix Gen</ScreenTitle>
       <Paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-        hendrerit, augue in pellentesque dignissim, ligula nibh elementum urna,
-        sed aliquam nisl sapien ac est. Vivamus ultricies, ligula eu
-        sollicitudin faucibus, enim dolor accumsan ligula, nec rhoncus tortor
-        sem in enim. Fusce at volutpat justo. Cras rutrum ante nec magna aliquam
-        scelerisque. Quisque a erat a leo pulvinar.
+        Dot matrix gen is a simple way to replicate animations like the classics
+        Tamagochi and Rakuraku Dinokun, that can be exported as a simple vector
+        of matrix. You can create a frame by frame animation using the editor
+        and play/pause the animation.
       </Paragraph>
       <StyledLink to={`/projects`}>to projects →</StyledLink>
       <Grid matrix={grid} pixelSize={10} clickCell={() => {}} />
-    </HomeContainer>
+    </ScreenContainer>
   );
 }
