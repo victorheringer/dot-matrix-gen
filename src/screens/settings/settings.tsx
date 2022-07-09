@@ -1,3 +1,10 @@
+import { ScreenContainer, ScreenTitle } from "../../components";
+
 export default function Settings() {
-  return <div>Settings</div>;
+  return (
+    <ScreenContainer>
+      <ScreenTitle>Settings</ScreenTitle>
+      Soon
+    </ScreenContainer>
+  );
 }

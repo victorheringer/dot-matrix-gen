@@ -13,13 +13,6 @@ export const ListContent = styled.div`
   width: 600px;
 `;
 
-export const ListTitle = styled.h2`
-  color: #212121;
-  margin-bottom: 40px;
-  font-size: 32px;
-  margin-top: 0;
-`;
-
 export const CardGrid = styled.div`
   display: flex;
 `;

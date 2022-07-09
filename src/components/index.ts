@@ -7,6 +7,8 @@ export { Sidebar } from "./sidebar";
 export { Content } from "./content";
 export { AppContainer } from "./app-container";
 export { FormControl } from "./form-control";
+export { ScreenContainer } from "./screen-container";
+export { ScreenTitle } from "./screen-title";
 export {
   CrudList,
   CrusListItemTitle,
