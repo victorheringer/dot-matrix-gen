@@ -10,9 +10,12 @@ import {
 } from "../helpers/storage-query";
 
 export default function useProjects() {
-  const [projects, setProjects] = useLocalStorageState("projects", {
-    defaultValue: createProject({}),
-  });
+  const [projects, setProjects, { removeItem }] = useLocalStorageState(
+    "projects",
+    {
+      defaultValue: createProject({}),
+    }
+  );
 
   function handleCreateProject() {
     const updated = createProject(projects);
@@ -58,5 +61,6 @@ export default function useProjects() {
     handleDeleteSprite,
     handleCreateFrame,
     handleUpdateFrame,
+    removeItem,
   };
 }
