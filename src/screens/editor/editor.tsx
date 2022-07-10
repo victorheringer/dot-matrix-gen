@@ -18,8 +18,16 @@ import { Grid } from "../../components";
 import { useEditor } from "./useEditor";
 
 export default function Editor() {
-  const { matrix, handleCopyCode, toggleMatrixCell, setMatrix } =
-    useGenerator();
+  const {
+    matrix,
+    handleCopyCode,
+    toggleMatrixCell,
+    setMatrix,
+    handleMoveMatrixDown,
+    handleMoveMatrixLeft,
+    handleMoveMatrixUp,
+    handleMoveMatrixRight,
+  } = useGenerator();
 
   const { projectId, spriteId } = useParams();
   const { projects, handleCreateFrame, handleUpdateFrame } = useProjects();
@@ -130,6 +138,26 @@ export default function Editor() {
           )}
         </GridContainer>
       </EditorContainer>
+
+      {mode == "edit" && (
+        <>
+          <Button variant="default" onClick={handleMoveMatrixUp}>
+            Mover para cima
+          </Button>
+
+          <Button variant="default" onClick={handleMoveMatrixDown}>
+            Mover para baixo
+          </Button>
+
+          <Button variant="default" onClick={handleMoveMatrixLeft}>
+            Mover para esquerda
+          </Button>
+
+          <Button variant="default" onClick={handleMoveMatrixRight}>
+            Mover para direita
+          </Button>
+        </>
+      )}
     </ProjectContainer>
   );
 }

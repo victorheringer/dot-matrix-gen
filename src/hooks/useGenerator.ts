@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { copyTextToClipboard } from "../helpers/copy";
-import { createMatrix } from "../helpers/array";
+import { createMatrix, moveMatrixData } from "../helpers/array";
+
 import produce from "immer";
 
 const INIT_HEIGHT = 16;
@@ -33,10 +34,30 @@ export function useGenerator() {
     alert("Matrix copy as array to your clipboard!");
   }
 
+  function handleMoveMatrixUp() {
+    setMatrix(moveMatrixData(matrix, "up"));
+  }
+
+  function handleMoveMatrixDown() {
+    setMatrix(moveMatrixData(matrix, "down"));
+  }
+
+  function handleMoveMatrixLeft() {
+    setMatrix(moveMatrixData(matrix, "left"));
+  }
+
+  function handleMoveMatrixRight() {
+    setMatrix(moveMatrixData(matrix, "right"));
+  }
+
   return {
     ...size,
     matrix,
     setMatrix,
+    handleMoveMatrixDown,
+    handleMoveMatrixLeft,
+    handleMoveMatrixUp,
+    handleMoveMatrixRight,
     handleChangeInput,
     handleGenerateCleanMatrix,
     handleCopyCode,

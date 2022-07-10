@@ -7,9 +7,14 @@ import {
   deleteFrame,
   updateFrame,
 } from "../storage-query";
+import * as ArrayHelper from "../array";
 import * as NumberHelper from "../number";
 
 describe("createProject", () => {
+  beforeAll(() => {
+    jest.spyOn(ArrayHelper, "createMatrix").mockReturnValue([[]]);
+  });
+
   it("should add a new project to an empty project document", () => {
     jest
       .spyOn(NumberHelper, "generateId")
@@ -161,6 +166,36 @@ describe("createFrame", () => {
           2: {
             name: "New Sprite",
             frames: { [4]: { data: [[]] }, [5]: { data: [[]] } },
+          },
+        },
+      },
+    });
+  });
+
+  it("should add the given frame to frame document with frames", () => {
+    jest.spyOn(NumberHelper, "generateId").mockReturnValueOnce(5);
+
+    expect(
+      createFrame(
+        {
+          1: {
+            name: "New project",
+            sprites: {
+              2: { name: "New Sprite", frames: { [4]: { data: [[]] } } },
+            },
+          },
+        },
+        1,
+        2,
+        [[true], [false]]
+      )
+    ).toEqual({
+      1: {
+        name: "New project",
+        sprites: {
+          2: {
+            name: "New Sprite",
+            frames: { [4]: { data: [[]] }, [5]: { data: [[true], [false]] } },
           },
         },
       },

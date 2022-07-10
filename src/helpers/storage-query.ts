@@ -32,11 +32,12 @@ export function createSprite(projects: any, projectId: number) {
 export function createFrame(
   projects: any,
   projectId: number,
-  spriteId: number
+  spriteId: number,
+  frames?: boolean[][]
 ) {
   return produce(projects, (draft: any) => {
     draft[projectId].sprites[spriteId].frames[generateId()] = {
-      data: createMatrix(INIT_HEIGHT, INIT_WIDTH, false),
+      data: !frames ? createMatrix(INIT_HEIGHT, INIT_WIDTH, false) : frames,
     };
   });
 }
