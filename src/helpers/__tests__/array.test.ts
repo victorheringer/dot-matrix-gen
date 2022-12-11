@@ -1,4 +1,9 @@
-import { moveMatrixData, createMatrix } from "../array";
+import {
+  moveMatrixData,
+  createMatrix,
+  booleanArrayToBinary,
+  booleanMatrixToHex,
+} from "../array";
 
 describe("createMatrix", () => {
   it("should create a function with correctly width and height", () => {
@@ -80,5 +85,23 @@ describe("moveMatrixData", () => {
       [true, false, true, false],
       [false, false, true, false],
     ]);
+  });
+});
+
+describe("booleanArrayToBinary", () => {
+  it("should convert an array of booleans to binary string", () => {
+    expect(booleanArrayToBinary([true, false, true, true])).toBe("1011");
+  });
+});
+
+describe("booleanMatrixToHex", () => {
+  it("should convert boolean matrix to an array of hex values", () => {
+    expect(
+      booleanMatrixToHex([
+        [false, true, true, true],
+        [false, false, true, false],
+        [false, true, false, false],
+      ])
+    ).toEqual(["7", "2", "4"]);
   });
 });

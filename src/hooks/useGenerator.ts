@@ -1,6 +1,10 @@
 import { useState, ChangeEvent } from "react";
 import { copyTextToClipboard } from "../helpers/copy";
-import { createMatrix, moveMatrixData } from "../helpers/array";
+import {
+  createMatrix,
+  moveMatrixData,
+  booleanMatrixToHex,
+} from "../helpers/array";
 
 import produce from "immer";
 
@@ -30,7 +34,7 @@ export function useGenerator() {
   }
 
   function handleCopyCode() {
-    copyTextToClipboard(JSON.stringify(matrix));
+    copyTextToClipboard(JSON.stringify(booleanMatrixToHex(matrix)));
     alert("Matrix copy as array to your clipboard!");
   }
 

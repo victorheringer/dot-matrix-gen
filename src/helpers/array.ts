@@ -52,3 +52,14 @@ export function moveMatrixData(
     }
   }
 }
+
+export function booleanArrayToBinary(row: boolean[]) {
+  return row.reduce((acc: string, value) => `${acc}${value ? 1 : 0}`, "");
+}
+
+export function booleanMatrixToHex(matrix: boolean[][]) {
+  return matrix.map((row) => {
+    const rowAsBinaryString = booleanArrayToBinary(row);
+    return parseInt(rowAsBinaryString, 2).toString(16).toUpperCase();
+  });
+}

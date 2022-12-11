@@ -26,6 +26,13 @@ export default function Settings() {
             </Button>
           </ActionColumn>
         </ItemWrapper>
+        <br />
+        <ItemWrapper>
+          <GrowColumn>
+            <Text>Export Format</Text>
+          </GrowColumn>
+          <ActionColumn>Hex</ActionColumn>
+        </ItemWrapper>
       </Container>
     </ScreenContainer>
   );
