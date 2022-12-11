@@ -8,14 +8,21 @@ export function createMatrix(
     .map(() => Array(width).fill(content));
 }
 
+export enum MOVE_DIRECTIONS {
+  UP = "up",
+  DOWN = "down",
+  LEFT = "left",
+  RIGHT = "right",
+}
+
 export function moveMatrixData(
   matrix: boolean[][],
-  direction: "up" | "down" | "left" | "right"
+  direction: MOVE_DIRECTIONS
 ) {
   const draft = createMatrix(matrix.length, matrix[0].length, false);
 
   switch (direction) {
-    case "down": {
+    case MOVE_DIRECTIONS.DOWN: {
       for (let x = 0; x < matrix.length - 1; x++) {
         draft[x + 1] = matrix[x];
       }
@@ -23,7 +30,7 @@ export function moveMatrixData(
       return draft;
     }
 
-    case "up": {
+    case MOVE_DIRECTIONS.UP: {
       for (let x = 1; x < matrix.length; x++) {
         draft[x - 1] = matrix[x];
       }
@@ -31,7 +38,7 @@ export function moveMatrixData(
       return draft;
     }
 
-    case "right": {
+    case MOVE_DIRECTIONS.RIGHT: {
       for (let x = 0; x < matrix.length; x++) {
         for (let y = 0; y < matrix[0].length - 1; y++) {
           draft[x][y + 1] = matrix[x][y];
@@ -41,7 +48,7 @@ export function moveMatrixData(
       return draft;
     }
 
-    case "left": {
+    case MOVE_DIRECTIONS.LEFT: {
       for (let x = 0; x < matrix.length; x++) {
         for (let y = 1; y < matrix[0].length; y++) {
           draft[x][y - 1] = matrix[x][y];

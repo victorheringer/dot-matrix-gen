@@ -1,4 +1,5 @@
 import {
+  MOVE_DIRECTIONS,
   moveMatrixData,
   createMatrix,
   booleanArrayToBinary,
@@ -27,7 +28,7 @@ describe("moveMatrixData", () => {
           [false, true, false, true],
           [true, false, false, true],
         ],
-        "down"
+        MOVE_DIRECTIONS.DOWN
       )
     ).toEqual([
       [false, false, false, false],
@@ -44,7 +45,7 @@ describe("moveMatrixData", () => {
           [false, true, false],
           [true, false, false],
         ],
-        "up"
+        MOVE_DIRECTIONS.UP
       )
     ).toEqual([
       [false, true, false],
@@ -61,7 +62,7 @@ describe("moveMatrixData", () => {
           [false, true, false, true],
           [true, false, false, true],
         ],
-        "right"
+        MOVE_DIRECTIONS.RIGHT
       )
     ).toEqual([
       [false, true, true, true],
@@ -78,7 +79,7 @@ describe("moveMatrixData", () => {
           [false, true, false, true],
           [true, false, false, true],
         ],
-        "left"
+        MOVE_DIRECTIONS.LEFT
       )
     ).toEqual([
       [true, true, true, false],

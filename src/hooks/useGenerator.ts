@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { copyTextToClipboard } from "../helpers/copy";
 import {
+  MOVE_DIRECTIONS,
   createMatrix,
   moveMatrixData,
   booleanMatrixToHex,
@@ -39,19 +40,19 @@ export function useGenerator() {
   }
 
   function handleMoveMatrixUp() {
-    setMatrix(moveMatrixData(matrix, "up"));
+    setMatrix(moveMatrixData(matrix, MOVE_DIRECTIONS.UP));
   }
 
   function handleMoveMatrixDown() {
-    setMatrix(moveMatrixData(matrix, "down"));
+    setMatrix(moveMatrixData(matrix, MOVE_DIRECTIONS.DOWN));
   }
 
   function handleMoveMatrixLeft() {
-    setMatrix(moveMatrixData(matrix, "left"));
+    setMatrix(moveMatrixData(matrix, MOVE_DIRECTIONS.LEFT));
   }
 
   function handleMoveMatrixRight() {
-    setMatrix(moveMatrixData(matrix, "right"));
+    setMatrix(moveMatrixData(matrix, MOVE_DIRECTIONS.RIGHT));
   }
 
   return {
