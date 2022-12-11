@@ -142,19 +142,19 @@ export default function Editor() {
       {mode == "edit" && (
         <>
           <Button variant="default" onClick={handleMoveMatrixUp}>
-            Mover para cima
+            Move up
           </Button>
 
           <Button variant="default" onClick={handleMoveMatrixDown}>
-            Mover para baixo
+            Move down
           </Button>
 
           <Button variant="default" onClick={handleMoveMatrixLeft}>
-            Mover para esquerda
+            Move left
           </Button>
 
           <Button variant="default" onClick={handleMoveMatrixRight}>
-            Mover para direita
+            Move Right
           </Button>
         </>
       )}
