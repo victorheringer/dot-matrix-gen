@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "rm -rf docs && tsc && vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "test:badges": "jest && jest-coverage-badges  --output ./.github/assets"
   },
   "dependencies": {
     "immer": "^9.0.15",
@@ -25,6 +26,7 @@
     "@types/styled-components": "^5.1.25",
     "@vitejs/plugin-react": "^1.3.0",
     "jest": "^28.1.1",
+    "jest-coverage-badges": "^1.1.2",
     "react-test-renderer": "^18.0.0",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",

@@ -10,7 +10,7 @@ import {
 } from "../helpers/storage-query";
 
 export default function useProjects() {
-  const [projects, setProjects, { removeItem }] = useLocalStorageState(
+  const [projects, setProjects, { removeItem }]: any = useLocalStorageState(
     "projects",
     {
       defaultValue: createProject({}),

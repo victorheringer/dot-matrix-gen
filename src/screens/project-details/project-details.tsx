@@ -11,7 +11,7 @@ import {
 } from "../../components";
 
 export default function ProjectsDetails() {
-  const { projectId } = useParams();
+  const { projectId }: any = useParams();
   const { projects, handleCreateSprite, handleDeleteSprite } = useProjects();
 
   const sprites = projects[projectId].sprites;
