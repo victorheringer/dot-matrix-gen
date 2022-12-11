@@ -9,6 +9,7 @@ export { AppContainer } from "./app-container";
 export { FormControl } from "./form-control";
 export { ScreenContainer } from "./screen-container";
 export { ScreenTitle } from "./screen-title";
+export { Modal } from "./modal";
 export {
   CrudList,
   CrusListItemTitle,
