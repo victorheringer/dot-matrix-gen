@@ -6,6 +6,7 @@ import {
   moveMatrixData,
   booleanMatrixToHex,
 } from "../helpers/array";
+import { EXPORT_FORMAT, useSettings } from "./useSettings";
 
 import produce from "immer";
 
@@ -14,6 +15,7 @@ const INIT_WIDTH = 19;
 
 export function useGenerator() {
   const [size, setSize] = useState({ height: INIT_HEIGHT, width: INIT_WIDTH });
+  const { settings } = useSettings();
   const [matrix, setMatrix] = useState(
     createMatrix(INIT_HEIGHT, INIT_WIDTH, false)
   );
@@ -35,7 +37,12 @@ export function useGenerator() {
   }
 
   function handleCopyCode() {
-    copyTextToClipboard(JSON.stringify(booleanMatrixToHex(matrix)));
+    const formatted: any = {
+      [EXPORT_FORMAT.BOOLEAN]: matrix,
+      [EXPORT_FORMAT.HEX]: booleanMatrixToHex(matrix),
+    };
+
+    copyTextToClipboard(JSON.stringify(formatted[settings.exportFormat]));
     alert("Matrix copy as array to your clipboard!");
   }
 
