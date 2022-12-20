@@ -4,6 +4,7 @@ import {
   createMatrix,
   booleanArrayToBinary,
   booleanMatrixToHex,
+  floodFill,
 } from "../array";
 
 describe("createMatrix", () => {
@@ -104,5 +105,41 @@ describe("booleanMatrixToHex", () => {
         [false, true, false, false],
       ])
     ).toEqual(["7", "2", "4"]);
+  });
+});
+
+describe("floodFill", () => {
+  it("should correctly return a small matrix filled", () => {
+    expect(
+      floodFill(1, 1, [
+        [false, true, true, false],
+        [true, false, false, true],
+        [false, true, true, false],
+      ])
+    ).toEqual([
+      [false, true, true, false],
+      [true, true, true, true],
+      [false, true, true, false],
+    ]);
+  });
+
+  it("should correctly fill a big matrix", () => {
+    expect(
+      floodFill(2, 3, [
+        [false, false, false, false, false, false, false, false],
+        [false, true, true, true, true, true, false, false],
+        [false, true, false, false, false, true, false, false],
+        [false, true, false, false, false, true, false, false],
+        [false, true, false, false, false, true, false, false],
+        [false, true, true, true, true, true, false, false],
+      ])
+    ).toEqual([
+      [false, false, false, false, false, false, false, false],
+      [false, true, true, true, true, true, false, false],
+      [false, true, true, true, true, true, false, false],
+      [false, true, true, true, true, true, false, false],
+      [false, true, true, true, true, true, false, false],
+      [false, true, true, true, true, true, false, false],
+    ]);
   });
 });

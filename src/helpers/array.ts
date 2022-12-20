@@ -70,3 +70,18 @@ export function booleanMatrixToHex(matrix: boolean[][]) {
     return parseInt(rowAsBinaryString, 2).toString(16).toUpperCase();
   });
 }
+
+export function floodFill(x: number, y: number, matrix: boolean[][]) {
+  if (!(x >= 0 && x < matrix.length && y >= 0 && y < matrix[x].length)) return;
+
+  if (matrix[x][y] == true) return;
+
+  matrix[x][y] = true;
+
+  floodFill(x + 1, y, matrix);
+  floodFill(x - 1, y, matrix);
+  floodFill(x, y + 1, matrix);
+  floodFill(x, y - 1, matrix);
+
+  return matrix;
+}
