@@ -27,6 +27,7 @@ export default function Editor() {
     handleMoveMatrixLeft,
     handleMoveMatrixUp,
     handleMoveMatrixRight,
+    handleFillMatrix,
   } = useGenerator();
 
   const { projectId, spriteId } = useParams();
@@ -155,6 +156,10 @@ export default function Editor() {
 
           <Button variant="default" onClick={handleMoveMatrixRight}>
             Move Right
+          </Button>
+
+          <Button variant="default" onClick={handleFillMatrix}>
+            Fill
           </Button>
         </>
       )}

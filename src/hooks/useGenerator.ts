@@ -5,6 +5,7 @@ import {
   createMatrix,
   moveMatrixData,
   booleanMatrixToHex,
+  floodFill,
 } from "../helpers/array";
 import { EXPORT_FORMAT, useSettings } from "./useSettings";
 
@@ -19,6 +20,7 @@ export function useGenerator() {
   const [matrix, setMatrix] = useState(
     createMatrix(INIT_HEIGHT, INIT_WIDTH, false)
   );
+  const [willBeFilledNext, setWillBeFilled] = useState(false);
 
   function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
     setSize({ ...size, [event.target.name]: parseInt(event.target.value) });
@@ -29,11 +31,18 @@ export function useGenerator() {
   }
 
   function toggleMatrixCell(line: number, column: number, value: boolean) {
-    const copy = produce(matrix, (draft: any) => {
-      draft[line][column] = !value;
-    });
+    if (willBeFilledNext) {
+      setMatrix(
+        floodFill(line, column, JSON.parse(JSON.stringify(matrix))) || [[]]
+      );
+      setWillBeFilled(false);
+    } else {
+      const copy = produce(matrix, (draft: any) => {
+        draft[line][column] = !value;
+      });
 
-    setMatrix(copy);
+      setMatrix(copy);
+    }
   }
 
   function handleCopyCode() {
@@ -62,6 +71,10 @@ export function useGenerator() {
     setMatrix(moveMatrixData(matrix, MOVE_DIRECTIONS.RIGHT));
   }
 
+  function handleFillMatrix() {
+    setWillBeFilled(true);
+  }
+
   return {
     ...size,
     matrix,
@@ -74,5 +87,6 @@ export function useGenerator() {
     handleGenerateCleanMatrix,
     handleCopyCode,
     toggleMatrixCell,
+    handleFillMatrix,
   };
 }
