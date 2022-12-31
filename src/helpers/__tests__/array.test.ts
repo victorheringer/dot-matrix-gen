@@ -142,4 +142,18 @@ describe("floodFill", () => {
       [false, true, true, true, true, true, false, false],
     ]);
   });
+
+  it("should return the same matrix if a filled item position is given", () => {
+    expect(
+      floodFill(0, 1, [
+        [false, true, true, false],
+        [true, false, false, true],
+        [false, true, true, false],
+      ])
+    ).toEqual([
+      [false, true, true, false],
+      [true, false, false, true],
+      [false, true, true, false],
+    ]);
+  });
 });

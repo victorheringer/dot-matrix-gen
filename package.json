@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf docs && vite build && test:badges",
+    "build": "rm -rf docs && vite build && yarn test:badges",
     "preview": "vite preview",
     "test": "jest",
     "test:badges": "jest && jest-coverage-badges  --output ./.github/assets"

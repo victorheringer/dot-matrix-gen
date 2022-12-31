@@ -71,17 +71,22 @@ export function booleanMatrixToHex(matrix: boolean[][]) {
   });
 }
 
-export function floodFill(x: number, y: number, matrix: boolean[][]) {
-  if (!(x >= 0 && x < matrix.length && y >= 0 && y < matrix[x].length)) return;
+export function floodFill(
+  x: number,
+  y: number,
+  matrix: boolean[][]
+): boolean[][] {
+  if (!(x >= 0 && x < matrix.length && y >= 0 && y < matrix[x].length))
+    return matrix;
 
-  if (matrix[x][y] == true) return;
+  if (matrix[x][y] == true) return matrix;
 
   matrix[x][y] = true;
 
-  floodFill(x + 1, y, matrix);
-  floodFill(x - 1, y, matrix);
-  floodFill(x, y + 1, matrix);
-  floodFill(x, y - 1, matrix);
+  const left = floodFill(x + 1, y, matrix);
+  const right = floodFill(x - 1, y, left);
+  const up = floodFill(x, y + 1, right);
+  const down = floodFill(x, y - 1, up);
 
-  return matrix;
+  return down;
 }
