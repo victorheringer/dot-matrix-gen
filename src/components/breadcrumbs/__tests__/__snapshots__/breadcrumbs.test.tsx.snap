@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumbs should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ fUFrXq"
+  >
+    <span>
+      <a
+        href="/test"
+      >
+        text-value
+      </a>
+       &gt; 
+    </span>
+    <span>
+      <a
+        href="/test-other"
+      >
+        text-other-value
+      </a>
+       
+    </span>
+  </div>
+</DocumentFragment>
+`;

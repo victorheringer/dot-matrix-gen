@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal should not render correctly a hidden modal 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ dtlpkf"
+  >
+    Test
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Modal should render correctly a visible modal 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ hqrsbG"
+  >
+    Test
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ iEichk"
+  >
+    <h1
+      class="sc-gsnTZi gUxsMH"
+    >
+      Dot Matrix Gen
+    </h1>
+    <ul
+      class="sc-dkzDqf iuqTVU"
+    >
+      <li
+        class="sc-hKMtZM dKFOdX"
+      >
+        <a
+          href="/"
+        >
+          Home
+        </a>
+      </li>
+      <li
+        class="sc-hKMtZM dKFOdX"
+      >
+        <a
+          href="/projects"
+        >
+          Projects
+        </a>
+      </li>
+      <li
+        class="sc-hKMtZM dKFOdX"
+      >
+        <a
+          href="/settings"
+        >
+          Settings
+        </a>
+      </li>
+      <li
+        class="sc-hKMtZM dKFOdX"
+      >
+        <a
+          href="https://github.com/victorheringer/dot-matrix-gen"
+          target="_blank"
+        >
+          Github
+        </a>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

@@ -8,10 +8,10 @@ export default function Breadcrumbs() {
   return (
     <BreadcrumbsContainer>
       {breadcrumbs.map(({ match, breadcrumb }, index) => (
-        <>
+        <span key={match.pathname}>
           <Link to={match.pathname}>{breadcrumb}</Link>{" "}
           {breadcrumbs.length > index + 1 && "> "}
-        </>
+        </span>
       ))}
     </BreadcrumbsContainer>
   );

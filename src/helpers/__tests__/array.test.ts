@@ -156,4 +156,16 @@ describe("floodFill", () => {
       [false, true, true, false],
     ]);
   });
+
+  it("should fill a full matrix", () => {
+    expect(
+      floodFill(0, 0, [
+        [false, false],
+        [false, false],
+      ])
+    ).toEqual([
+      [true, true],
+      [true, true],
+    ]);
+  });
 });

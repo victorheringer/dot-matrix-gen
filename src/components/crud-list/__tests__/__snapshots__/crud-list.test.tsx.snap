@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CrudList should render correctly with content 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-ksZaOG jPhuDQ"
+  >
+    <h1
+      class="sc-evZas jgMWAF"
+    >
+      test-title
+    </h1>
+    <div
+      class="sc-hAZoDl duqJcE"
+    >
+      <div
+        class="sc-jSMfEi gwRlBM"
+      >
+        <div
+          class="sc-fnykZs knWTCK"
+        >
+          <div
+            class="sc-fEOsli hVvMIe"
+          >
+            <p
+              class="sc-idiyUo kXqhxf"
+            >
+              test-btn-text
+            </p>
+          </div>
+          <button
+            class="sc-hKMtZM hlCIed"
+          >
+            New
+          </button>
+        </div>
+      </div>
+      <p>
+        test
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CrudList should render correctly without content 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-ksZaOG jPhuDQ"
+  >
+    <h1
+      class="sc-evZas jgMWAF"
+    >
+      test-title
+    </h1>
+    <div
+      class="sc-hAZoDl duqJcE"
+    >
+      <div
+        class="sc-jSMfEi gwRlBM"
+      >
+        <div
+          class="sc-fnykZs knWTCK"
+        >
+          <div
+            class="sc-fEOsli hVvMIe"
+          >
+            <p
+              class="sc-idiyUo kXqhxf"
+            >
+              test-btn-text
+            </p>
+          </div>
+          <button
+            class="sc-hKMtZM hlCIed"
+          >
+            New
+          </button>
+        </div>
+      </div>
+      <p>
+        test
+      </p>
+      <p
+        class="sc-bjUoiL caxqdG"
+      >
+        You don't have any content yet, just click above and create a new one!
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CrudListItemColumn should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-dmRaPn iKIcXE"
+  >
+    test
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CrudListItemGrid should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-kgflAQ fCPQaH"
+  >
+    test
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CrudListItemLink should render correctly 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-hHLeRK hAxDos"
+    href="/test/url"
+  >
+    test
+  </a>
+</DocumentFragment>
+`;
+
+exports[`CrusListItemTitle should render correctly 1`] = `
+<DocumentFragment>
+  <p
+    class="sc-dIouRR TTRYl"
+  >
+    test
+  </p>
+</DocumentFragment>
+`;

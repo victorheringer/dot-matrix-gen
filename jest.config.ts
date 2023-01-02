@@ -5,4 +5,5 @@ export default {
   coverageReporters: ["json-summary", "text", "lcov"],
   collectCoverageFrom: ["src/**/*.{ts,tsx}"],
   collectCoverage: true,
+  testEnvironment: "jsdom",
 };

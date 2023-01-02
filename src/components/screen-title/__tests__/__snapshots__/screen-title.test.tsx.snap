@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScreenTitle should render correctly 1`] = `
+<DocumentFragment>
+  <h1
+    class="sc-bczRLJ eBVCLp"
+  >
+    Test
+  </h1>
+</DocumentFragment>
+`;

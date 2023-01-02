@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ ccfSbU"
+  >
+    <table>
+      <tbody>
+        <tr>
+          <td
+            aria-label="cell position 0:0"
+            class="sc-gsnTZi ftUeuu"
+            size="10"
+          />
+          <td
+            aria-label="cell position 0:1"
+            class="sc-gsnTZi boLvHC"
+            size="10"
+          />
+        </tr>
+        <tr>
+          <td
+            aria-label="cell position 1:0"
+            class="sc-gsnTZi ftUeuu"
+            size="10"
+          />
+          <td
+            aria-label="cell position 1:1"
+            class="sc-gsnTZi boLvHC"
+            size="10"
+          />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

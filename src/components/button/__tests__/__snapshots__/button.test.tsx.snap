@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render correctly the danger variant 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bczRLJ bzCXpw"
+  />
+</DocumentFragment>
+`;
+
+exports[`Button should render correctly the default variant 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bczRLJ dTuaoz"
+  />
+</DocumentFragment>
+`;
+
+exports[`Button should render correctly the default variant and full width 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bczRLJ bZsGtM"
+  />
+</DocumentFragment>
+`;
+
+exports[`Button should render correctly the secondary variant 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bczRLJ diUefb"
+  />
+</DocumentFragment>
+`;

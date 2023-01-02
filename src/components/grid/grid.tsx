@@ -20,6 +20,7 @@ export default function Grid({ matrix, clickCell, pixelSize }: GridProps) {
                     onClick={() => clickCell(lineIndex, columnIndex, column)}
                     isPainted={column}
                     size={pixelSize}
+                    aria-label={`cell position ${lineIndex}:${columnIndex}`}
                   ></TableColumn>
                 ))}
             </tr>
